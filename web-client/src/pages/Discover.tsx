@@ -20,9 +20,9 @@ export interface CurrentUser {
 }
 const Discovery = ({ user }) => {
   const buttonClassNames =
-    'fa-solid rounded-full p-3 text-md hover:cursor-pointer bg-[#E3DCD9]';
+    'fa-solid rounded-full p-3 text-md text-white hover:cursor-pointer bg-[#494036]';
   const barkSniffClasses =
-    'rounded-2xl text-md hover:cursor-pointer text-center bg-[#E3DCD9] px-5 py-2 text-lg';
+    'rounded-2xl text-md hover:cursor-pointer text-center bg-[#494036] text-white px-5 py-2 text-lg ';
 
   const [ranApiCall, setRanApiCall] = useState<boolean>(false);
   const [reRender, setReRender] = useState<boolean>(false);
@@ -35,11 +35,19 @@ const Discovery = ({ user }) => {
   console.log('PROFILE ARRAY');
 
   const handleBark = () => {
-    setCurrentUser({
-      user: profileArray[currentUser.index + 1],
-      index: (currentUser.index += 1),
-    });
-    setReRender(true);
+    if (currentUser.index !== profileArray.length) {
+      setCurrentUser({
+        user: profileArray[currentUser.index + 1],
+        index: (currentUser.index += 1),
+      });
+      setReRender(true);
+    } else {
+      setCurrentUser({
+        user: profileArray[0],
+        index: 0,
+      });
+      setReRender(true);
+    }
   };
 
   const handleSniff = () => {
@@ -81,11 +89,14 @@ const Discovery = ({ user }) => {
   }, [reRender]);
 
   return (
-    <div className="">
-      {ranApiCall && currentUser.user.userId !== 0 ? (
+    <div className="h-[100vh] bg-hero">
+      {ranApiCall &&
+      currentUser &&
+      currentUser.user &&
+      currentUser.user.userId !== 0 ? (
         <>
           {/* Title */}
-          <div className="flex flex-row justify-center text-6xl">
+          <div className="flex flex-row justify-center text-6xl text-[#494036]">
             <div>Discover Mode</div>
           </div>
 
@@ -95,13 +106,19 @@ const Discovery = ({ user }) => {
 
           {/* Carousel */}
           <div className="flex flex-col h-[90vh] justify-center items-center m-auto w-[100%]">
-            {!reRender && (
+            {!reRender &&
+            currentUser.index !== profileArray.length &&
+            currentUser.user.name !== user.name ? (
               <Carousel
                 leftArrow={
-                  <i className={buttonClassNames + ' fa-arrow-left'}></i>
+                  <i
+                    className={buttonClassNames + ' fa-arrow-left mr-[10px]'}
+                  ></i>
                 }
                 rightArrow={
-                  <i className={buttonClassNames + ' fa-arrow-right'}></i>
+                  <i
+                    className={buttonClassNames + ' fa-arrow-right ml-[10px]'}
+                  ></i>
                 }
                 show={3}
                 slide={1}
@@ -125,17 +142,34 @@ const Discovery = ({ user }) => {
                     </div>
                   ))}
               </Carousel>
-            )}
+            ) : currentUser.user.name === user.name ? (
+              handleBark()
+            ) : null}
 
             {/* Yes/No buttons */}
             <div className="flex flex-row justify-between w-[50%] mt-[-5vh] mb-[8vh] z-[10]">
               <div>
-                <button onClick={handleBark} className={barkSniffClasses}>
+                <button
+                  onClick={() => {
+                    if (currentUser.index !== profileArray.length) {
+                      handleBark();
+                    }
+                  }}
+                  className={barkSniffClasses}
+                >
                   Bark
                 </button>
               </div>
               <div>
-                <button onClick={handleSniff} className={barkSniffClasses}>
+                <button
+                  onClick={() => {
+                    if (currentUser.index !== profileArray.length) {
+                      handleSniff();
+                    } else {
+                    }
+                  }}
+                  className={barkSniffClasses}
+                >
                   Sniff
                 </button>
               </div>
@@ -145,11 +179,15 @@ const Discovery = ({ user }) => {
             <ProfileInfo currentUser={currentUser} />
           </div>
         </>
-      ) : ranApiCall === true ? (
-        <>
-          Please login <a href="/callback">here</a>
-        </>
-      ) : null}
+      ) : (
+        <div className="w-[100vw] h-[85vh] text-center flex flex-col justify-center">
+          {currentUser.index === profileArray.length ? (
+            <div className="text-5xl text-[#494036]">
+              End of nearby profiles
+            </div>
+          ) : null}
+        </div>
+      )}
     </div>
   );
 };
