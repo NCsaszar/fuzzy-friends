@@ -20,9 +20,9 @@ export interface CurrentUser {
 }
 const Discovery = ({ user }) => {
   const buttonClassNames =
-    'fa-solid rounded-full p-3 text-md hover:cursor-pointer bg-[#E3DCD9]';
+    'fa-solid rounded-full p-3 text-md text-white hover:cursor-pointer bg-[#494036]';
   const barkSniffClasses =
-    'rounded-2xl text-md hover:cursor-pointer text-center bg-[#E3DCD9] px-5 py-2 text-lg';
+    'rounded-2xl text-md hover:cursor-pointer text-center bg-[#494036] text-white px-5 py-2 text-lg ';
 
   const [ranApiCall, setRanApiCall] = useState<boolean>(false);
   const [reRender, setReRender] = useState<boolean>(false);
@@ -35,11 +35,20 @@ const Discovery = ({ user }) => {
   console.log('PROFILE ARRAY');
 
   const handleBark = () => {
-    setCurrentUser({
-      user: profileArray[currentUser.index + 1],
-      index: (currentUser.index += 1),
-    });
-    setReRender(true);
+    if (currentUser.index !== profileArray.length) {
+      setCurrentUser({
+        user: profileArray[currentUser.index + 1],
+        index: (currentUser.index += 1),
+      });
+      setReRender(true);
+    } else {
+      setCurrentUser({
+        user: profileArray[0],
+        index: 0,
+      });
+      setReRender(true);
+    }
+
   };
 
   const handleSniff = () => {
@@ -81,11 +90,11 @@ const Discovery = ({ user }) => {
   }, [reRender]);
 
   return (
-    <div className="">
+    <div className="h-[100vh] bg-hero">
       {ranApiCall && currentUser.user.userId !== 0 ? (
         <>
           {/* Title */}
-          <div className="flex flex-row justify-center text-6xl">
+          <div className="flex flex-row justify-center text-6xl text-[#494036]">
             <div>Discover Mode</div>
           </div>
 
@@ -98,10 +107,10 @@ const Discovery = ({ user }) => {
             {!reRender && (
               <Carousel
                 leftArrow={
-                  <i className={buttonClassNames + ' fa-arrow-left'}></i>
+                  <i className={buttonClassNames + ' fa-arrow-left mr-[10px]'}></i>
                 }
                 rightArrow={
-                  <i className={buttonClassNames + ' fa-arrow-right'}></i>
+                  <i className={buttonClassNames + ' fa-arrow-right ml-[10px]'}></i>
                 }
                 show={3}
                 slide={1}

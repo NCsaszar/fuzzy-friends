@@ -129,8 +129,8 @@ const Profile = ({ setUser, user }) => {
   }
 
   return (
-    <div className="flex justify-evenly">
-      <div className="float-left m-10 ml-36 p-5 max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 h-110 grid grid-cols-1 gap-2 content-center">
+    <div className="flex justify-evenly bg-hero bg-cover h-[100vh] bg-[length:800px_95%]">
+      <div className="float-left m-10 ml-36 p-5 max-w-sm border border-black rounded-lg shadow-md dark:border-black h-[60vh] grid grid-cols-1 gap-2 content-center">
         {/* Profile Pic */}
         <div className="relative w-48 h-48 ml-[23%]">
           <img
@@ -150,12 +150,12 @@ const Profile = ({ setUser, user }) => {
         </div>
         {/* Profile Name */}
         <div className="p-5">
-          <h5 className="ml-[45%] pt-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            {user ? `${user.name}` : 'Lani'}
+          <h5 className="ml-[45%] pt-4 text-2xl font-bold tracking-tight text-[#494036] dark:text-[#494036]">
+            {user.name ? `${user.name}` : console.log(user)}
           </h5>
         </div>
         {/* Description */}
-        <div className="mb-4 font-normal text-gray-700 dark:text-gray-400 text-center">
+        <div className="mb-4 font-normal text-[#494036] dark:text-[#494036] text-center">
           {!all.length ? (
             <div>
               <li>There is no description yet.</li>

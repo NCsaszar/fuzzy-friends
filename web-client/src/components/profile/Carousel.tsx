@@ -31,13 +31,13 @@ const CarouselCard = () => {
   ];
 
   return (
-    <div className="mt-10 float-right max-w-[750px] p-5 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 h-110 grid grid-cols-1 gap-2 content-center">
+    <div className="mt-10 float-right max-w-[750px] p-5 bg-transparent border border-gray rounded-lg shadow-md dark:bg-transparent dark:border-gray h-110 grid grid-cols-1 gap-2 content-center">
       <Carousel
         leftArrow={
-          <i className="fa-solid rounded-full p-3 text-md hover:cursor-pointer bg-[#E3DCD9] fa-arrow-left"></i>
+          <i className="fa-solid rounded-full p-3 text-md text-white hover:cursor-pointer bg-[#494036] fa-arrow-left"></i>
         }
         rightArrow={
-          <i className="fa-solid rounded-full p-3 text-md hover:cursor-pointer bg-[#E3DCD9] fa-arrow-right"></i>
+          <i className="fa-solid rounded-full p-3 text-md text-white hover:cursor-pointer bg-[#494036] fa-arrow-right"></i>
         }
         show={1}
         slide={1}

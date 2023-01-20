@@ -39,7 +39,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ currentChat, mate, user }) => {
   };
 
   return (
-    <div className="m-10 max-w-sm max-h-[90vh] flex flex-col border shadow-md bg-white rounded-lg bg-white border border-gray-200 shadow-md dark:bg-warmGray-700 dark:border-gray- gap-2 content-center overflow-auto">
+    <div className="m-10 max-w-sm max-h-[90vh] flex flex-col border shadow-md bg-white rounded-lg bg-white border border-gray-200 shadow-md dark:bg-warmGray-700 dark:border-gray- gap-2 content-center">
       <div className="flex items-center justify-between border-b p-5">
         <div className="flex items-center">
           <img className="rounded-full w-10 h-10" src={mate.profilePic} />
@@ -54,18 +54,20 @@ const ChatBox: React.FC<ChatBoxProps> = ({ currentChat, mate, user }) => {
         </div>
       </div>
       {currentChat.length !== 0 ? (
-        <ScrollToBottom>
-          {currentChat.map((message) => {
-            return (
-              <ChatInput
-                key={message._id}
-                message={message}
-                mate={mate}
-                user={user}
-              />
-            );
-          })}
-        </ScrollToBottom>
+        <div className="overflow-y-auto max-h-[10vh]">
+          <ScrollToBottom>
+            {currentChat.map((message) => {
+              return (
+                <ChatInput
+                  key={message._id}
+                  message={message}
+                  mate={mate}
+                  user={user}
+                />
+              );
+            })}
+          </ScrollToBottom>
+        </div>
       ) : null}
       <div className="flex items-center mb-4 p-4 w-full">
         <form
