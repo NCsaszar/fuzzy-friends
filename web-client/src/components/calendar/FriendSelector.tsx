@@ -11,7 +11,7 @@ const FriendSelector: React.FC<{
   const getFriends = async () => {
     try {
       const friends = await axios.get(
-        `http://34.238.117.39:3000/users/5/friends`
+        `http://34.238.117.39:3000/users/${userId}/friends`
       );
       const temp = [];
       for (let i = 0; i < friends.data.length; i++) {
