@@ -39,17 +39,17 @@ interface PlaceType {
   structured_formatting: StructuredFormatting;
 }
 interface Props {
-  initialLocation: string;
   handleLocation: (value: string) => void;
 }
 
-const Location: React.FC<Props> = ({ initialLocation, handleLocation }) => {
-  const [value, setValue] = useState<PlaceType | null>(initialLocation);
+const Location: React.FC<Props> = ({ handleLocation }) => {
+  const [value, setValue] = useState<PlaceType | null>(null);
   //value.description for the address as a string
   const [inputValue, setInputValue] = useState('');
   const [options, setOptions] = useState<readonly PlaceType[]>([]);
   const loaded = useRef(false);
 
+  console.log('location value:', value);
   useEffect(() => {
     if (value?.description) {
       handleLocation(value?.description);
