@@ -193,7 +193,7 @@ const ChatPage: React.FC = ({ user }) => {
   //useEffect to check if user is logged in
   //if not logged in, then direct to log in page?
   //if logged in, setCurrentUser to user with latest message? or we display welcome message and allow user to select chat of his or her choice
-
+  // "2023-01-20T15:13:02.201Z"
   const getChatHistory = (mateId: string) => {
     // get chat history with mateid=2
     console.log('before axios: ', user.userId, mateId);
@@ -201,6 +201,7 @@ const ChatPage: React.FC = ({ user }) => {
       .get(`http://34.238.117.39:3000/users/${user.userId}/messages/${mateId}`)
       .then((data) => {
         console.log('updated chat history: ', data.data);
+
         setCurrentChat(data.data);
       })
       .catch((err) => {
@@ -242,7 +243,7 @@ const ChatPage: React.FC = ({ user }) => {
 
   return (
     <div>
-      <div className="flex">
+      <div className="flex bg-hero h-[100vh]">
         <div className="flex-1 w-20">
           <MatchList
             matches={matches}

@@ -122,14 +122,24 @@ app.post('/users/:id', (req: Request, res: Response) => {
 */
 
 let evts = sampleEvents;
-app.get('/users/:id/events', (req, res) => {
-  res.send(evts);
+app.get('/users/:id/events', async (req, res) => {
+  // res.send(evts);
+  try {
+    const results = await Event.find({ userId: req.params.id });
+    console.log('what are my results:', results);
+    res.send(results);
+  } catch (err) {
+    console.log('got an error GET events', err);
+    res.sendStatus(500);
+  }
 });
 
 app.post('/users/:id/events', async (req, res) => {
   const event = new Event(req.body);
+  event.userId = req.params.id;
   evts.push({
     _id: '5',
+    userId: req.params.id,
     title: event.title,
     description: event.description,
     friend: event.friend,
@@ -138,6 +148,7 @@ app.post('/users/:id/events', async (req, res) => {
     end: event.end,
     date: new Date('2023-01-22'),
   });
+
   try {
     const result = await event.save();
     console.log('what does mongoose send back?', result);

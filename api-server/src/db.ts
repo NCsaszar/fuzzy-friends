@@ -39,6 +39,7 @@ const InvitesSchema = new mongoose.Schema(
 const Invite = mongoose.model('Invite', InvitesSchema);
 
 const EventsSchema = new mongoose.Schema({
+  userId: String,
   title: String,
   description: String,
   friend: String,
@@ -75,7 +76,10 @@ export const db = {
       Message.find({ senderId, receiverId })
         .then((data) => {
           listOfMessages = data;
-          return Message.find({ senderId: receiverId, receiverId: senderId });
+          return Message.find({
+            senderId: receiverId,
+            receiverId: senderId,
+          });
         })
         .then((data) => {
           listOfMessages = [...listOfMessages, ...data];

@@ -86,6 +86,7 @@ const today = new Date();
 export const sampleEvents = [
   {
     _id: '1',
+    userId: 'test',
     title: 'Play date with Lola',
     description: 'Meeting with Lola for some park time.',
     friend: 'lola',
@@ -96,6 +97,7 @@ export const sampleEvents = [
   },
   {
     _id: '2',
+    userId: 'test',
     title: 'Group play at Majors Hill Park',
     description: 'This is going to be so much fun',
     friend: 'lola',
@@ -106,6 +108,7 @@ export const sampleEvents = [
   },
   {
     _id: '3',
+    userId: 'test',
     title: 'Coffee time w/ Banshee',
     description: 'Lots of cool times',
     friend: 'lola',
@@ -116,6 +119,7 @@ export const sampleEvents = [
   },
   {
     _id: '4',
+    userId: 'test',
     title: 'Sarge Bday',
     description: 'meeting up with the cool guy',
     friend: 'lola',

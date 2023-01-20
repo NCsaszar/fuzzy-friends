@@ -13,6 +13,7 @@ interface CalendarView {
 
 const blankPlayEvent: PlayEvent = {
   _id: '',
+  userId: 'test',
   title: 'Playdate',
   description: '',
   friend: '',
@@ -36,7 +37,7 @@ export const CalendarView: React.FC<CalendarView> = ({
   const [playEvent, setPlayEvent] = useState<PlayEvent>(blankPlayEvent);
 
   let date = 0;
-
+  console.log('what is my userId:', userId);
   const sameDay = (ds: Date) => {
     return (
       ds.getFullYear() === year &&
@@ -56,7 +57,7 @@ export const CalendarView: React.FC<CalendarView> = ({
 
   const fetchEvents = () => {
     axios
-      .get('http://127.0.0.1:3000/users/test/events')
+      .get(`http://34.238.117.39:3000/users/${userId}/events`)
       .then((resp) => {
         setEvents(resp.data);
       })
@@ -73,8 +74,10 @@ export const CalendarView: React.FC<CalendarView> = ({
   const handleDayClick = (event: string, payload?: object) => {
     if (event === 'ADDED' || event === 'DELETED') {
       fetchEvents();
+      setPlayEvent(blankPlayEvent);
     } else if (event === 'EDITED') {
       // put
+      fetchEvents();
     } else if (event === 'OPENDAY') {
       setPlayEvent(blankPlayEvent);
     } else if (event === 'OPENEVENT') {
@@ -87,6 +90,7 @@ export const CalendarView: React.FC<CalendarView> = ({
     setModalIsOpen(!modalIsOpen);
   };
 
+  const ds = new Date();
   return (
     <tbody>
       <ScheduleDateModal
@@ -94,6 +98,7 @@ export const CalendarView: React.FC<CalendarView> = ({
         handleDayClick={handleDayClick}
         playEvent={playEvent}
         userId={userId}
+        dateStr={'2023-01-20'}
       />
       {[0, 1, 2, 3, 4, 5].map((week) => {
         if (date < numOfDays) {

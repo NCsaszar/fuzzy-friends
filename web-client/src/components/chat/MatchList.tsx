@@ -58,7 +58,7 @@ const MatchList: React.FC<MatchListProps> = ({
 
   return (
     // <div>
-    <div className="m-10 max-w-sm min-h-fit flex flex-col border shadow-md bg-white rounded-lg bg-white border border-gray-200 shadow-md dark:bg-warmGray-700 dark:border-gray- gap-2 content-center">
+    <div className="m-10 h-[80vh] min-h-fit flex flex-col border shadow-md bg-white rounded-lg bg-white border border-gray-200 shadow-md dark:bg-warmGray-700 dark:border-gray- gap-2 content-center">
       <div className="flex items-center justify-between border-b p-5">
         <div className="flex items-center">
           <form onSubmit={doSearch}>

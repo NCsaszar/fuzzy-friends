@@ -23,12 +23,11 @@ const ChatInput: React.FC<ChatInputProps> = ({ message, mate, user }) => {
   //   message += emoji.emoji;
   //   setMsg(message);
   // };
-
-  if (message.receiverId === user.userId || message.senderId === user.userId) {
+  if (message.senderId === user.userId) {
     return (
-      <div className="flex items-center flex-row-reverse mb-4 p-5">
+      <div className="flex items-center flex-row-reverse mb-4 p-5 overflow-y-auto">
         <div className="flex-none flex flex-col items-center space-y-1 ml-4">
-          <img className="rounded-full w-10 h-10" src={user.profilePic} />
+          <img className="rounded-full w-10 h-10" src={user.pictures[0]} />
           <a href="#" className="block text-xs hover:underline">
             {user.name}
           </a>
@@ -41,9 +40,9 @@ const ChatInput: React.FC<ChatInputProps> = ({ message, mate, user }) => {
     );
   } else {
     return (
-      <div className="flex items-center mb-4 p-5">
+      <div className="flex items-center mb-4 p-5 overflow-y-auto">
         <div className="flex-none flex flex-col items-center space-y-1 mr-4">
-          <img className="rounded-full w-10 h-10" src={mate.profilePic} />
+          <img className="rounded-full w-10 h-10" src={mate.pictures[0]} />
           <a href="#" className="block text-xs hover:underline">
             {mate.name}
           </a>

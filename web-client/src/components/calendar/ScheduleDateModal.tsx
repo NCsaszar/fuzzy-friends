@@ -25,16 +25,31 @@ interface ScheduleDateModalProps {
   modalIsOpen: boolean;
   handleDayClick: (event: string, payload?: object) => void;
   playEvent: PlayEvent;
+  dateStr: string;
   userId: string | number;
 }
+
+const blankPlayEvent: PlayEvent = {
+  _id: '',
+  userId: 'test',
+  title: 'Playdate',
+  description: '',
+  friend: '',
+  location: '',
+  start: '',
+  end: '',
+  date: new Date(),
+};
 
 const ScheduleDateModal: React.FC<ScheduleDateModalProps> = ({
   modalIsOpen,
   handleDayClick,
   playEvent,
+  dateStr,
   userId,
 }) => {
   const [form, setForm] = useState(playEvent);
+  const [fakeDate, setFakeDate] = useState(dateStr);
 
   useEffect(() => {
     setForm(playEvent);
@@ -55,6 +70,7 @@ const ScheduleDateModal: React.FC<ScheduleDateModalProps> = ({
         hour12: false,
       });
 
+      console.log('times:', formattedStartTime, formattedEndTime);
       setForm({
         ...form,
         ['start']: formattedStartTime,
@@ -67,13 +83,17 @@ const ScheduleDateModal: React.FC<ScheduleDateModalProps> = ({
     const name = 'location';
     const value = str;
 
-    setForm({ ...playEvent, [name]: value });
+    setForm({ ...form, [name]: value });
   };
 
   const handleFriend = (str: string) => {
     const name = 'friend';
     const value = str;
     setForm({ ...form, [name]: value });
+  };
+
+  const handleDateChange = (e) => {
+    setFakeDate(e.target.value);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,19 +103,41 @@ const ScheduleDateModal: React.FC<ScheduleDateModalProps> = ({
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = () => {
-    axios
-      .post('http://localhost:3000/users/test/events', form)
-      .then((resp) => console.log(resp))
-      .catch((err) => console.log('posting error:', err))
-      .finally(() => handleDayClick('ADDED'));
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('what is the button text', e.target.innerText);
+    console.log('what is my fake date:', fakeDate);
+    if (e.target.innerText === 'SCHEDULE') {
+      const ds = new Date(fakeDate);
+      ds.setDate(ds.getDate() + 1);
+      form.date = ds;
+      delete form['_id'];
+      console.log('what am I sending:', form);
+      axios
+        .post(`http://34.238.117.39:3000/users/${userId}/events`, form)
+        .then((resp) => console.log(resp))
+        .catch((err) => console.log('posting error:', err))
+        .finally(() => {
+          setForm(blankPlayEvent);
+          handleDayClick('ADDED');
+        });
+    } else {
+      const ds = new Date(fakeDate);
+      ds.setDate(ds.getDate() + 1);
+      form.date = ds;
+      axios
+        .put(`http://34.238.117.39:3000/users/${userId}/events`, form)
+        .then((resp) => console.log('PUT SUCCESS', resp))
+        .catch((err) => console.log('put error:', err))
+        .finally(() => handleDayClick('EDITED'));
+    }
   };
 
   const handleDelete = () => {
     //
     console.log('send a delete with:', form._id);
     axios
-      .delete('http://localhost:3000/users/test/events', {
+      .delete(`http://34.238.117.39:3000/users/${userId}/events`, {
         params: { _id: form._id },
       })
       .then(() => {
@@ -115,6 +157,16 @@ const ScheduleDateModal: React.FC<ScheduleDateModalProps> = ({
       bgcolor: '#494036',
     },
   };
+
+  const formatDate = (ds: Date) => {
+    if (ds instanceof Date) {
+      return ds.toLocaleDateString();
+    }
+    return 'bad date';
+  };
+
+  console.log('this is my formatdate:', formatDate(form.date));
+  console.log('what is the date:', form.date);
   return (
     <div>
       <Modal
@@ -190,8 +242,18 @@ const ScheduleDateModal: React.FC<ScheduleDateModalProps> = ({
               />
               <TimeSelectors handleTime={handleTime} />
               <Location
-                initialLocation={form.location}
+                // initialLocation={form.location}
                 handleLocation={handleLocation}
+              />
+              <TextField
+                id="outlined-basic"
+                label="Date"
+                variant="outlined"
+                name="date"
+                value={fakeDate}
+                defaultValue={dateStr}
+                required={true}
+                onChange={handleDateChange}
               />
               <FriendSelector handleFriend={handleFriend} userId={userId} />
               <TextField
@@ -201,7 +263,9 @@ const ScheduleDateModal: React.FC<ScheduleDateModalProps> = ({
                 rows={4}
                 name="description"
                 value={form.description}
-                onChange={handleChange}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  handleChange(e)
+                }
               />
               <Box
                 sx={{
@@ -225,7 +289,7 @@ const ScheduleDateModal: React.FC<ScheduleDateModalProps> = ({
                     },
                   }}
                 >
-                  Schedule
+                  {form._id === '' ? 'Schedule' : 'Update'}
                 </Button>
               </Box>
             </Box>
