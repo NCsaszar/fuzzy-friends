@@ -48,16 +48,20 @@ export const Calendar: React.FC<{ user: object }> = ({ user }) => {
   return (
     <div className="container mx-auto mt-10">
       <div className="wrapper bg-white rounded shadow w-full ">
-        <div className="header flex justify-between border-b p-2">
+        <div
+          className="header flex justify-between border-b p-2"
+          style={{ backgroundColor: '#e3dcd9', color: '#9d6129' }}
+        >
           <span className="text-lg font-bold">
             {date.getFullYear()} {monthsIdx[date.getMonth()]}
           </span>
           <div className="buttons ml-8">
             <button id="previousMonth" className="p-1" onClick={handleClick}>
               <svg
-                width="1em"
-                fill="gray"
-                height="1em"
+                style={{ backgroundColor: '#494036', borderRadius: '2em' }}
+                width="2em"
+                fill="white"
+                height="2em"
                 viewBox="0 0 16 16"
                 className="bi bi-arrow-left-circle"
                 xmlns="http://www.w3.org/2000/svg"
@@ -78,9 +82,10 @@ export const Calendar: React.FC<{ user: object }> = ({ user }) => {
             </button>
             <button id="nextMonth" className="p-1" onClick={handleClick}>
               <svg
-                width="1em"
-                fill="gray"
-                height="1em"
+                style={{ backgroundColor: '#494036', borderRadius: '2em' }}
+                width="2em"
+                fill="white"
+                height="2em"
                 viewBox="0 0 16 16"
                 className="bi bi-arrow-right-circle"
                 xmlns="http://www.w3.org/2000/svg"
@@ -104,7 +109,7 @@ export const Calendar: React.FC<{ user: object }> = ({ user }) => {
         <table className="w-full">
           <thead>
             <tr>
-              <th className="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs">
+              <th className="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs bg-[#494036] text-white">
                 <span className="xl:block lg:block md:block sm:block hidden">
                   Sunday
                 </span>
@@ -112,7 +117,7 @@ export const Calendar: React.FC<{ user: object }> = ({ user }) => {
                   Sun
                 </span>
               </th>
-              <th className="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs">
+              <th className="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs bg-[#494036] text-white">
                 <span className="xl:block lg:block md:block sm:block hidden">
                   Monday
                 </span>
@@ -120,7 +125,7 @@ export const Calendar: React.FC<{ user: object }> = ({ user }) => {
                   Mon
                 </span>
               </th>
-              <th className="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs">
+              <th className="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs bg-[#494036] text-white">
                 <span className="xl:block lg:block md:block sm:block hidden">
                   Tuesday
                 </span>
@@ -128,7 +133,7 @@ export const Calendar: React.FC<{ user: object }> = ({ user }) => {
                   Tue
                 </span>
               </th>
-              <th className="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs">
+              <th className="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs bg-[#494036] text-white">
                 <span className="xl:block lg:block md:block sm:block hidden">
                   Wednesday
                 </span>
@@ -136,7 +141,7 @@ export const Calendar: React.FC<{ user: object }> = ({ user }) => {
                   Wed
                 </span>
               </th>
-              <th className="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs">
+              <th className="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs bg-[#494036] text-white">
                 <span className="xl:block lg:block md:block sm:block hidden">
                   Thursday
                 </span>
@@ -144,7 +149,7 @@ export const Calendar: React.FC<{ user: object }> = ({ user }) => {
                   Thu
                 </span>
               </th>
-              <th className="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs">
+              <th className="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs bg-[#494036] text-white">
                 <span className="xl:block lg:block md:block sm:block hidden">
                   Friday
                 </span>
@@ -152,7 +157,7 @@ export const Calendar: React.FC<{ user: object }> = ({ user }) => {
                   Fri
                 </span>
               </th>
-              <th className="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs">
+              <th className="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs bg-[#494036] text-white">
                 <span className="xl:block lg:block md:block sm:block hidden">
                   Saturday
                 </span>
