@@ -50,6 +50,11 @@ const ScheduleDateModal: React.FC<ScheduleDateModalProps> = ({
 }) => {
   const [form, setForm] = useState(playEvent);
   const [fakeDate, setFakeDate] = useState(dateStr);
+  const [submitted, setSubmitted] = useState(false);
+  const [value, setValue] = useState(null);
+  const [inputValue, setInputValue] = useState('');
+  const [startTime, setStartTime] = useState<Dayjs | null>(null);
+  const [endTime, setEndTime] = useState<Dayjs | null>(null);
 
   useEffect(() => {
     setForm(playEvent);
@@ -105,8 +110,6 @@ const ScheduleDateModal: React.FC<ScheduleDateModalProps> = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('what is the button text', e.target.innerText);
-    console.log('what is my fake date:', fakeDate);
     if (e.target.innerText === 'SCHEDULE') {
       const ds = new Date(fakeDate);
       ds.setDate(ds.getDate() + 1);
@@ -118,9 +121,14 @@ const ScheduleDateModal: React.FC<ScheduleDateModalProps> = ({
         .then((resp) => console.log(resp))
         .catch((err) => console.log('posting error:', err))
         .finally(() => {
+          setSubmitted(true);
           setForm(blankPlayEvent);
           handleDayClick('ADDED');
         });
+      setValue(null);
+      setInputValue('');
+      setStartTime(null);
+      setEndTime(null);
     } else {
       const ds = new Date(fakeDate);
       ds.setDate(ds.getDate() + 1);
@@ -165,8 +173,6 @@ const ScheduleDateModal: React.FC<ScheduleDateModalProps> = ({
     return 'bad date';
   };
 
-  console.log('this is my formatdate:', formatDate(form.date));
-  console.log('what is the date:', form.date);
   return (
     <div>
       <Modal
@@ -240,10 +246,19 @@ const ScheduleDateModal: React.FC<ScheduleDateModalProps> = ({
                   handleChange(e)
                 }
               />
-              <TimeSelectors handleTime={handleTime} />
+              <TimeSelectors
+                handleTime={handleTime}
+                startTime={startTime}
+                setStartTime={setStartTime}
+                endTime={endTime}
+                setEndTime={setEndTime}
+              />
               <Location
-                // initialLocation={form.location}
                 handleLocation={handleLocation}
+                value={value}
+                setValue={setValue}
+                inputValue={inputValue}
+                setInputValue={setInputValue}
               />
               <TextField
                 id="outlined-basic"
