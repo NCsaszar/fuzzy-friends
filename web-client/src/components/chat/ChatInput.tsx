@@ -25,7 +25,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ message, mate, user }) => {
   // };
   if (message.senderId === user.userId) {
     return (
-      <div className="flex items-center flex-row-reverse mb-4 p-5">
+      <div className="flex items-center flex-row-reverse mb-4 p-5 overflow-y-auto">
         <div className="flex-none flex flex-col items-center space-y-1 ml-4">
           <img className="rounded-full w-10 h-10" src={user.pictures[0]} />
           <a href="#" className="block text-xs hover:underline">
@@ -40,7 +40,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ message, mate, user }) => {
     );
   } else {
     return (
-      <div className="flex items-center mb-4 p-5">
+      <div className="flex items-center mb-4 p-5 overflow-y-auto">
         <div className="flex-none flex flex-col items-center space-y-1 mr-4">
           <img className="rounded-full w-10 h-10" src={mate.pictures[0]} />
           <a href="#" className="block text-xs hover:underline">

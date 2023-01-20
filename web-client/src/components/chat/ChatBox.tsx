@@ -41,7 +41,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ currentChat, mate, user }) => {
   };
 
   return (
-    <div className="m-10 max-w-sm max-h-[90vh] overflow-scroll flex flex-col border shadow-md bg-white rounded-lg bg-white border border-gray-200 shadow-md dark:bg-warmGray-700 dark:border-gray- gap-2 content-center overflow-auto">
+    <div className="m-10 max-w-sm h-[80vh] flex flex-col border shadow-md bg-white rounded-lg bg-white border border-gray-200 shadow-md dark:bg-warmGray-700 dark:border-gray- gap-2 content-center">
       <div className="flex items-center justify-between border-b p-5">
         <div className="flex items-center">
           <img
@@ -59,7 +59,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ currentChat, mate, user }) => {
         </div>
       </div>
       {currentChat.length !== 0 ? (
-        <ScrollToBottom>
+        <ScrollToBottom className="overflow-y-auto">
           {sortedChat.map((message) => {
             return (
               <ChatInput
@@ -72,7 +72,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ currentChat, mate, user }) => {
           })}
         </ScrollToBottom>
       ) : null}
-      <div className="flex items-center mb-4 p-4 w-full">
+      <div className="flex items-center mb-4 p-4 w-full self-end">
         <form
           className="w-full rounded-full border border-gray-200 px-4"
           onSubmit={(event) => sendMessage(event)}

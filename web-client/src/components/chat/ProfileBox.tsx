@@ -7,7 +7,7 @@ interface ProfileBoxProps {
 const ProfileBox: React.FC<ProfileBoxProps> = ({ mate }) => {
   return (
     <>
-      <div className="m-10 p-5 max-w-sm bg-white border border-gray-200 rounded-lg shadow-md h-[38rem] grid grid-cols-1 gap-2 content-center">
+      <div className="m-10 p-5 max-w-sm bg-white border border-gray-200 rounded-lg shadow-md h-[80vh] grid grid-cols-1 gap-2 content-center">
         <div className="relative w-48 h-48 ml-16">
           <img
             className="absolute rounded-full border border-gray-300 shadow=sm"

@@ -243,7 +243,7 @@ const ChatPage: React.FC = ({ user }) => {
 
   return (
     <div>
-      <div className="flex">
+      <div className="flex bg-hero h-[100vh]">
         <div className="flex-1 w-20">
           <MatchList
             matches={matches}
