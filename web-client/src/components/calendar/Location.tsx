@@ -42,10 +42,16 @@ interface Props {
   handleLocation: (value: string) => void;
 }
 
-const Location: React.FC<Props> = ({ handleLocation }) => {
-  const [value, setValue] = useState<PlaceType | null>(null);
-  //value.description for the address as a string
-  const [inputValue, setInputValue] = useState('');
+const Location: React.FC<Props> = ({
+  handleLocation,
+
+  value,
+  inputValue,
+  setValue,
+  setInputValue,
+}) => {
+  // const [value, setValue] = useState<PlaceType | null>(null);
+  // const [inputValue, setInputValue] = useState('');
   const [options, setOptions] = useState<readonly PlaceType[]>([]);
   const loaded = useRef(false);
 

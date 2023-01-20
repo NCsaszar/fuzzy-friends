@@ -11,11 +11,11 @@ import PropTypes from 'prop-types';
 interface HandleTime {
   (start: Dayjs | null, end: Dayjs | null): void;
 }
-const TimeSelectors: React.FC<{ handleTime: HandleTime }> = ({
-  handleTime,
-}) => {
-  const [startTime, setStartTime] = useState<Dayjs | null>(null);
-  const [endTime, setEndTime] = useState<Dayjs | null>(null);
+const TimeSelectors: React.FC<{
+  handleTime: HandleTime;
+}> = ({ handleTime, startTime, setStartTime, endTime, setEndTime }) => {
+  // const [startTime, setStartTime] = useState<Dayjs | null>(null);
+  // const [endTime, setEndTime] = useState<Dayjs | null>(null);
   useEffect(() => {
     handleTime(startTime, endTime);
   }, [startTime, endTime]);
