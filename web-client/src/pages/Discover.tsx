@@ -48,7 +48,6 @@ const Discovery = ({ user }) => {
       });
       setReRender(true);
     }
-
   };
 
   const handleSniff = () => {
@@ -91,7 +90,10 @@ const Discovery = ({ user }) => {
 
   return (
     <div className="h-[100vh] bg-hero">
-      {ranApiCall && currentUser.user.userId !== 0 ? (
+      {ranApiCall &&
+      currentUser &&
+      currentUser.user &&
+      currentUser.user.userId !== 0 ? (
         <>
           {/* Title */}
           <div className="flex flex-row justify-center text-6xl text-[#494036]">
@@ -104,13 +106,19 @@ const Discovery = ({ user }) => {
 
           {/* Carousel */}
           <div className="flex flex-col h-[90vh] justify-center items-center m-auto w-[100%]">
-            {!reRender && (
+            {!reRender &&
+            currentUser.index !== profileArray.length &&
+            currentUser.user.name !== user.name ? (
               <Carousel
                 leftArrow={
-                  <i className={buttonClassNames + ' fa-arrow-left mr-[10px]'}></i>
+                  <i
+                    className={buttonClassNames + ' fa-arrow-left mr-[10px]'}
+                  ></i>
                 }
                 rightArrow={
-                  <i className={buttonClassNames + ' fa-arrow-right ml-[10px]'}></i>
+                  <i
+                    className={buttonClassNames + ' fa-arrow-right ml-[10px]'}
+                  ></i>
                 }
                 show={3}
                 slide={1}
@@ -134,17 +142,34 @@ const Discovery = ({ user }) => {
                     </div>
                   ))}
               </Carousel>
-            )}
+            ) : currentUser.user.name === user.name ? (
+              handleBark()
+            ) : null}
 
             {/* Yes/No buttons */}
             <div className="flex flex-row justify-between w-[50%] mt-[-5vh] mb-[8vh] z-[10]">
               <div>
-                <button onClick={handleBark} className={barkSniffClasses}>
+                <button
+                  onClick={() => {
+                    if (currentUser.index !== profileArray.length) {
+                      handleBark();
+                    }
+                  }}
+                  className={barkSniffClasses}
+                >
                   Bark
                 </button>
               </div>
               <div>
-                <button onClick={handleSniff} className={barkSniffClasses}>
+                <button
+                  onClick={() => {
+                    if (currentUser.index !== profileArray.length) {
+                      handleSniff();
+                    } else {
+                    }
+                  }}
+                  className={barkSniffClasses}
+                >
                   Sniff
                 </button>
               </div>
@@ -154,11 +179,15 @@ const Discovery = ({ user }) => {
             <ProfileInfo currentUser={currentUser} />
           </div>
         </>
-      ) : ranApiCall === true ? (
-        <>
-          Please login <a href="/callback">here</a>
-        </>
-      ) : null}
+      ) : (
+        <div className="w-[100vw] h-[85vh] text-center flex flex-col justify-center">
+          {currentUser.index === profileArray.length ? (
+            <div className="text-5xl text-[#494036]">
+              End of nearby profiles
+            </div>
+          ) : null}
+        </div>
+      )}
     </div>
   );
 };
