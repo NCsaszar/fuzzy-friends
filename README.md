@@ -1,6 +1,6 @@
 # Fuzzy Friends
 
-![CircleCI](https://circleci.com/gh/Emerald-Lake/fuzzy-friends.svg?style=shield&circle-token=:circle-ci-badge-token)](https://circleci.com/gh/circleci/circleci-docs)
+![CircleCI](https://circleci.com/gh/Emerald-Lake/fuzzy-friends.svg?style=shield&circle-token=:circle-ci-badge-token)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
