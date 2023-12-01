@@ -1,6 +1,6 @@
 # Fuzzy Friends
 
-[![CircleCI](https://circleci.com/gh/Emerald-Lake/fuzzy-friends.svg?style=shield&circle-token=:circle-ci-badge-token)](https://circleci.com/gh/circleci/circleci-docs)
+![CircleCI](https://circleci.com/gh/Emerald-Lake/fuzzy-friends.svg?style=shield&circle-token=:circle-ci-badge-token)](https://circleci.com/gh/circleci/circleci-docs)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
@@ -17,19 +17,12 @@
 https://user-images.githubusercontent.com/950371/214112896-f9d5ddad-a78b-4336-a2a5-d1f8d2c781b4.mp4
 
 
-A social network to grow your pup’s pack
-
-
-
-## Table of Contents
-
-* [Tech Stack](#tech-stack)
-* [Features](#features)
-* [Development](#development)
-* [Contributors](#contributors)
+## Description
+Fuzzy Friends is a social media platform designed for pet owners to set up playdates. This project, developed at Hack Reactor's coding bootcamp, showcases an interactive events widget that enhances user engagement by allowing pet owners to schedule, update, or delete playdates.
 
 ## Features
-
-## Development
-
-## Contributors
+- **Events Widget**: Custom-built calendar using Tailwind CSS and Material UI, allowing users to schedule, update, or delete pet playdates.
+- **Seamless Transitions**: Integrated React Router for smooth, single-page application navigation.
+- **Enhanced Security**: Auth0 for robust user authentication and secure access.
+- **Messaging System**: Functionality to message friends directly within the app, facilitating easy coordination of playdates.
+- **Profile Browsing**: A feature that enables users to browse and view profiles of other pet owners, enhancing social connectivity and interaction.
